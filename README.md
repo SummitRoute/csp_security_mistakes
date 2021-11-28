@@ -15,13 +15,24 @@ I've made an attempt at creating such a record here. This data would be better m
 #### Name: Name of the vulnerability if available, or a short explanation
 - Summary: Explanation of the issue
 - Platform: cloud provider (AWS, GCP, or Azure)
-- Severity: Takes into consideration how potentially widespread this issue was (was it a newly released service or one that has been around for years?), what would be achieved by an attacker abusing this issue (full data compromise?), and whether other issues needed to be chained to this for it to be exploited (did the attacker need privileges in your environment already? Did they need special knowledge of your environment?)
-- Date: Date this was discovered. The actual date where this impacted customers may have been much earlier, and the date it was published, or fixed may be much later.
+- Severity: My opinion. This needs to be improved to takes into consideration how potentially widespread this issue was (was it a newly released service or one that has been around for years?), what would be achieved by an attacker abusing this issue (full data compromise?), and whether other issues needed to be chained to this for it to be exploited (did the attacker need privileges in your environment already? Did they need special knowledge of your environment? Did they need a victim to visit a link?).  
+- Date: Date this was discovered pr published if unknown. The actual date where this impacted customers may have been much earlier, and the date it was published, or fixed may be much later. This is just to give this list some sort of ordering.
 - Discoverer: Individuals who found the issue and where they worked at the time
 Customer action: Whether this issue was entirely outside of their control to take action on, or if they could fix it.
 - References: Publication of the research and response from the cloud provider if it exists.
 
 # Issues
+
+### GCP org policies bypass
+- Summary: Allows an attacker with privileges in the account to share resources outside of the account even when an org policy restricts this, thus enabling them to backdoor their access.
+- Platform: GCP
+- Severity: Medium
+- Date: May 15, 2021
+- Discoverer: Kat Traxler (https://twitter.com/NightmareJS)
+- Customer action: N/A
+- References: 
+  - https://kattraxler.github.io/gcp/hacking/2021/09/10/gcp-org-policy-bypass-ai-notebooks.html
+
 
 ### ChaosDB
 - Summary: All CosmosDB customer data compromised. Series of mistakes by Azure shows systemic lack of security best practices.
@@ -32,7 +43,52 @@ Customer action: Whether this issue was entirely outside of their control to tak
 - Customer action: Regenerate primary read/write key 
 - References: 
   - https://chaosdb.wiz.io/
+  - https://www.wiz.io/blog/chaosdb-how-we-hacked-thousands-of-azure-customers-databases
   - https://www.wiz.io/blog/chaosdb-explained-azures-cosmos-db-vulnerability-walkthrough
+
+
+### Azurescape
+- Summary: Cross-account container escape
+- Platform: Azure
+- Severity: Critical
+- Date: September 9, 2021
+- Discoverer: Yuval Avrahami, Palo Alto
+- Customer action: 
+- References: 
+  - https://unit42.paloaltonetworks.com/azure-container-instances/
+
+
+### Log analytics role privesc
+- Summary: Privilege escalation of Log Analytics Contributor role to Subscription Contributor role.
+- Platform: Azure
+- Severity: Medium
+- Date: September 13, 2021
+- Discoverer: Karl Fosaaen, SPI
+- Customer action: N/A
+- References: 
+  - https://www.netspi.com/blog/technical/cloud-penetration-testing/escalating-azure-privileges-with-the-log-analystics-contributor-role/
+
+### OMIGOD
+- Summary: Azure forces the install of an agent on Linux VMs, which contained a vuln that would grant root RCE if an attacker could send a web request to them 
+- Platform: Azure
+- Severity: Critical
+- Date: September 14, 2021
+- Discoverer: Nir Ohfeld, Wiz.io
+- Customer action: N/A, client needed to be auto-updated
+- References: 
+  - https://www.wiz.io/blog/secret-agent-exposes-azure-customers-to-unauthorized-code-execution
+
+
+### IAP bypass
+- Summary: Convincing a victim to click a specially crafted link would allow the attacker to bypass the Identity-Aware Proxy (a core component of BeyondCorp). 
+- Platform: GCP
+- Severity: Medium
+- Date: September 17, 2021
+- Discoverer: Unknown
+- Customer action: N/A
+- References: 
+  - https://cloud.google.com/support/bulletins#gcp-2021-020
+
 
 ### Workspace client RCE - CVE-2021-38112
 - Summary: If a user with AWS WorkSpaces 3.0.10-3.1.8 installed visits a page in their web browser with attacker controlled content, the attacker can get zero click RCE under common circumstances.
