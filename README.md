@@ -62,6 +62,16 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://twitter.com/SpenGietz/status/1252971138352701442
 
+### Exfiltrate data via the logs of GCP Org policy
+- Summary: Upon blocking a request, GCP Org policy were logging the deny logs in Principal's project and the blocking project. An attacker could use those logs to exfiltrate any data, by making request from a Principal they own from a defender project.
+- Platform: GCP
+- Severity: Medium
+- Date: October 12, 2020 (discovery). September 21, 2021 (fixed)
+- Discoverer: Jonathan Rault, TrustOnCloud
+- Customer action: Review denied logs in the defender project, because it was also logged there.
+- References: 
+  - https://trustoncloud.com/exfiltrate-data-from-your-super-secure-google-cloud-project-using-the-security-control-built-to-prevent-it/
+
 ### Lack of internal change controls for IAM managed policies
 - Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
 - Platform: AWS
@@ -71,7 +81,6 @@ Where possible I also want to ensure customers know what steps they can take to 
 - Customer action: N/A
 - References: 
   - https://twitter.com/__steele/status/1316909785607012352
-
 
 ### AssumeRole vendor issues with confused deputy
 - Summary: Kesten identifies that you may be able to access other AWS customers through their vendors
