@@ -21,6 +21,16 @@ Where possible I also want to ensure customers know what steps they can take to 
 
 # Issues
 
+### Launching EC2s did not require specifying AMI owner: CVE-2018-15869
+- Summary: Attackers had put malicious AMIs in the marketplace
+- Platform: AWS
+- Severity: Medium
+- Date: January 13, 2020
+- Discoverer: Megan Marsh (https://github.com/SwampDragons)
+- Customer action: Update CLI and other tools that create EC2s
+- References: 
+  - https://github.com/hashicorp/packer/issues/6584
+
 ### AWS employee posts customer access keys and information
 - Summary: AWS employee pushed data to a public github bucket containing AWS access keys and other credentials of customers and their data
 - Platform: AWS
