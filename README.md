@@ -13,7 +13,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 #### Name: Name of the vulnerability if available, or a short explanation
 - Summary: Explanation of the issue
 - Platform: cloud provider (AWS, GCP, or Azure)
-- Severity: My opinion of how bad this is.
+- Severity: My opinion of how bad this is, in relation to other issues on this page.
 - Date: Date this was discovered or published if unknown. The actual date where this impacted customers may have been much earlier, and the date it was published, or fixed may be much later. This is just to give this list some sort of ordering.
 - Discoverer: Individuals who found the issue and where they worked at the time
 - Customer action: Whether there is anything a customer could do as follow-up to this issue.
@@ -104,7 +104,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://twitter.com/benbridts/status/1280934515305824256
 
-### S3 Crypto SDK vulns
+### S3 Crypto SDK vulns: CVE-2020-8912 and CVE-2020-8911
 - Summary: 
 - Platform: AWS
 - Severity: Low
@@ -150,6 +150,52 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://blog.karims.cloud/2020/09/25/cloudformer-review-part-1.html
 
+###  AWS Encryption SDK issues
+- Summary: 
+- Platform: AWS
+- Severity: Low
+- Date: September 28, 2020
+- Discoverer: Thái "thaidn" Dương (https://twitter.com/XorNinja), Google
+- Customer action: Update SDK
+- References: 
+  - https://twitter.com/XorNinja/status/1310587707605659649
+  - https://vnhacker.blogspot.com/2020/09/advisory-security-issues-in-aws-kms-and.html
+
+
+### S3 bucket tagging not restricted
+- Summary: Lack of the privilege s3:PutBucketTagging did not restrict the ability to tag S3 buckets
+- Platform: AWS
+- Severity: Low
+- Date: September 28, 2020
+- Discoverer:  Ian Mckay (https://twitter.com/iann0036)
+- Customer action: N/A
+- References: 
+  - https://onecloudplease.com/blog/security-september-still-early-days-for-abac
+
+
+### Identification of privileges without being logged by CloudTrail 
+- Summary: An attacker could figure out what privileges they have in a victim account, without being logged in CloudTrail. It took AWS over 273 days to fix this.
+- Platform: AWS
+- Severity: Low
+- Date: September 2, 2020
+- Discoverer:  Nick Frichette (https://twitter.com/Frichette_n)
+- Customer action: N/A
+- References: 
+  - https://frichetten.com/blog/aws-api-enum-vuln/
+  - https://github.com/Frichetten/aws_stealth_perm_enum
+
+
+### Fall 2020, SOC 2 Type 2 failure
+- Summary: Information is under NDA, but anyone with an AWS account can read it on page 120 and 121.
+- Platform: AWS
+- Severity: Low
+- Date: December 22, 2020
+- Discoverer:  Scott Piper 
+- Customer action: N/A
+- References: 
+  - https://twitter.com/awswhatsnew/status/1341461386983952384
+
+
 
 ### GCP org policies bypass
 - Summary: Allows an attacker with privileges in the account to share resources outside of the account even when an org policy restricts this, thus enabling them to backdoor their access.
@@ -162,6 +208,16 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://kattraxler.github.io/gcp/hacking/2021/09/10/gcp-org-policy-bypass-ai-notebooks.html
 
 
+### Lightsail object storage access keys logged
+- Summary: Lightsail object storage allows the creation of access keys which were logged to CloudTrail (both access key and secret key)
+- Platform: GCP
+- Severity: Medium
+- Date: August 5, 2021
+- Discoverer: Scott Piper, Summit Route
+- Customer action: Roll access keys
+- References: 
+  - https://summitroute.com/blog/2021/08/05/lightsail_object_storage_concerns-part_1/
+
 ### ChaosDB
 - Summary: All CosmosDB customer data compromised. Series of mistakes by Azure shows systemic lack of security best practices.
 - Platform: Azure
@@ -173,7 +229,6 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://chaosdb.wiz.io/
   - https://www.wiz.io/blog/chaosdb-how-we-hacked-thousands-of-azure-customers-databases
   - https://www.wiz.io/blog/chaosdb-explained-azures-cosmos-db-vulnerability-walkthrough
-
 
 ### Azurescape
 - Summary: Cross-account container escape
@@ -228,6 +283,15 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://rhinosecuritylabs.com/aws/cve-2021-38112-aws-workspaces-rce/
 
+### Fall 2021, SOC 2 Type 2 failure
+- Summary: Information is under NDA, but anyone with an AWS account can read it on page 98.
+- Platform: AWS
+- Severity: Low
+- Date: November 15, 2021
+- Discoverer:  Scott Piper 
+- Customer action: N/A
+- References: 
+  - https://twitter.com/AWSSecurityInfo/status/1460326602982793220
 
 
 
