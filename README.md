@@ -220,7 +220,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 
 ### Lightsail object storage access keys logged
 - Summary: Lightsail object storage allows the creation of access keys which were logged to CloudTrail (both access key and secret key)
-- Platform: GCP
+- Platform: AWS
 - Severity: Medium
 - Date: August 5, 2021
 - Discoverer: Scott Piper, Summit Route
