@@ -62,7 +62,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://twitter.com/SpenGietz/status/1252971138352701442
 
-### Lack of IAM managed policy change controls
+### Lack of internal change controls for IAM managed policies
 - Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
 - Platform: AWS
 - Severity: Low
