@@ -13,8 +13,8 @@ Where possible I also want to ensure customers know what steps they can take to 
 #### Name: Name of the vulnerability if available, or a short explanation
 - Summary: Explanation of the issue
 - Platform: cloud provider (AWS, GCP, or Azure)
-- Severity: My opinion. This needs to be improved to takes into consideration how potentially widespread this issue was (was it a newly released service or one that has been around for years?), what would be achieved by an attacker abusing this issue (full data compromise?), and whether other issues needed to be chained to this for it to be exploited (did the attacker need privileges in your environment already? Did they need special knowledge of your environment? Did they need a victim to visit a link?).  
-- Date: Date this was discovered pr published if unknown. The actual date where this impacted customers may have been much earlier, and the date it was published, or fixed may be much later. This is just to give this list some sort of ordering.
+- Severity: My opinion of how bad this is.
+- Date: Date this was discovered or published if unknown. The actual date where this impacted customers may have been much earlier, and the date it was published, or fixed may be much later. This is just to give this list some sort of ordering.
 - Discoverer: Individuals who found the issue and where they worked at the time
 - Customer action: Whether there is anything a customer could do as follow-up to this issue.
 - References: Publication of the research and response from the cloud provider if it exists.
@@ -24,7 +24,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 ### AWS employee posts customer access keys and information
 - Summary: AWS employee pushed data to a public github bucket containing AWS access keys and other credentials of customers and their data
 - Platform: AWS
-- Severity: CRITICAL
+- Severity: Critical
 - Date: January 13, 2020
 - Discoverer: Upguard
 - Customer action: Roll impacted credentials
@@ -35,16 +35,120 @@ Where possible I also want to ensure customers know what steps they can take to 
 ### GuardDuty detection bypass via cloudtrail:PutEventSelectors
 - Summary: GuardDuty detects CloudTrail being disabled, but did not detect if you filtered out all events from CloudTrail, resulting in defenders having no logs to review. Require privileged access in victim account, resulting in limited visibility.
 - Platform: AWS
-- Severity: LOW
+- Severity: Low
 - Date: April 23, 2020
 - Discoverer: Spencer Gietzen, Rhino Security
 - Customer action: Setup detections independent of GuardDuty
 - References: 
   - https://github.com/RhinoSecurityLabs/Cloud-Security-Research/tree/master/AWS/cloudtrail_guardduty_bypass
 
+### Lack of bug bounty
+- Summary: Amazon goes public with their HackerOne bug bounty program but excludes AWS
+- Platform: AWS
+- Severity: Low
+- Date: April 22, 2020
+- Discoverer: Spencer Gietzen, Rhino Security
+- Customer action: N/A
+- References: 
+  - https://twitter.com/SpenGietz/status/1252971138352701442
+
+### Lack of IAM managed policy change controls
+- Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
+- Platform: AWS
+- Severity: Low
+- Date: October 15, 2020
+- Discoverer: Aidan Steele
+- Customer action: N/A
+- References: 
+  - https://twitter.com/__steele/status/1316909785607012352
 
 
+### AssumeRole vendor issues with confused deputy
+- Summary: Kesten identifies that you may be able to access other AWS customers through their vendors
+- Platform: AWS
+- Severity: Medium
+- Date: June 12, 2020
+- Discoverer: Kesten Broughton, Praetorian
+- Customer action: Audit your vendor roles
+- References: 
+  - https://www.praetorian.com/blog/aws-iam-assume-role-vulnerabilities/
 
+
+### VPC Hosted Zones unauditable
+- Summary: For 6 years, it was not possible to see what hosted zones an attacker may have created in an account.
+- Platform: AWS
+- Severity: Low
+- Date: June 18, 2020
+- Discoverer: Aidan Steele
+- Customer action: Audit your VPC hosted zones
+- References: 
+  - https://twitter.com/__steele/status/1273748905826455552
+
+### XSS on EC2 web console
+- Summary: Display of EC2 tags had XSS
+- Platform: AWS
+- Severity: Low
+- Date: July 1, 2020
+- Discoverer: Johann Rehberger
+- Customer action: N/A
+- References: 
+  - https://embracethered.com/blog/posts/2020/aws-xss-cross-site-scripting-vulnerability/
+
+### Terms and conditions allows sharing customer data
+- Summary: Use of the AI services on AWS allows customer data to be moved outside of the regions it is used in and potentially shared with third-parties.
+- Platform: AWS
+- Severity: Medium
+- Date: July 8, 2020
+- Discoverer: Ben Bridts
+- Customer action: Opt out via Organization AI opt-out policy: https://summitroute.com/blog/2021/01/06/opting_out_of_aws_ai_data_usage/
+- References: 
+  - https://twitter.com/benbridts/status/1280934515305824256
+
+### S3 Crypto SDK vulns
+- Summary: 
+- Platform: AWS
+- Severity: Low
+- Date: July 1, 2020
+- Discoverer: Sophie Schmieg, Google
+- Customer action: Update SDK
+- References: 
+  - https://twitter.com/SchmiegSophie/status/1292930639772004352
+  - https://github.com/google/security-research/security/advisories/GHSA-76wf-9vgp-pj7w
+  - https://github.com/google/security-research/security/advisories/GHSA-f5pg-7wfw-84q9
+  - https://github.com/google/security-research/security/advisories/GHSA-7f33-f4f5-xwgw
+  - https://aws.amazon.com/blogs/developer/updates-to-the-amazon-s3-encryption-client/
+
+### ALB HTTP request smuggling
+- Summary: ALBs found vulnerable to HTTP request smuggling (desync attack).
+- Platform: AWS
+- Severity: Medium
+- Date: October 4, 2019
+- Discoverer: Arkadiy Tetelman (https://twitter.com/arkadiyt), Chime; original issue by James Kettle (https://twitter.com/albinowax), Portswigger
+- Customer action: Configure setting on your ALBs
+- References: 
+  - https://twitter.com/arkadiyt/status/1180174359840862209
+  - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-attributes
+
+### Execution in CloudFormation service account
+- Summary: Ability to run arbitrary Lambda code in an AWS managed account, with privileges to access some data of other customer accounts
+- Platform: AWS
+- Severity: Critical
+- Date: August 26, 2020
+- Discoverer: Aidan Steele (https://twitter.com/__steele) and Ian Mckay (https://twitter.com/iann0036)
+- Customer action: N/A
+- References: 
+  - https://onecloudplease.com/blog/security-september-cataclysms-in-the-cloud-formations
+
+
+### CloudFormer review
+- Summary: Audit of AWS open-source project identifies so many issues AWS takes it down
+- Platform: AWS
+- Severity: Low
+- Date: September 25, 2020
+- Discoverer: Karim El-Melhaoui (https://twitter.com/KarimMelhaoui)
+- Customer action: N/A
+- References: 
+  - https://blog.karims.cloud/2020/09/25/cloudformer-review-part-1.html
 
 
 ### GCP org policies bypass
