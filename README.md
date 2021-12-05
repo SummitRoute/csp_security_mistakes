@@ -304,5 +304,37 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://twitter.com/AWSSecurityInfo/status/1460326602982793220
 
 
+### Azure Active Directory information disclosure vulnerability (CVE-2021-42306)
+- Summary: Automation Account “Run as” credentials (PFX certificates) were being stored in cleartext, in Azure Active Directory (AAD). These credentials were available to anyone with the ability to read information about App Registrations (typically most AAD users). 
+- Platform: Azure
+- Severity: High
+- Date: November 15, 2021
+- Discoverer:  Karl Fosaaen, netspi 
+- Customer action: Regenrate exposed certificate
+- References: 
+  - https://msrc-blog.microsoft.com/2021/11/17/guidance-for-azure-active-directory-ad-keycredential-property-information-disclosure-in-application-and-service-principal-apis/
+  - https://github.com/microsoft/aad-app-credential-tools/blob/main/azure-migrate/azure-migrate-credential-rotation-guide.md
+  - https://www.netspi.com/blog/technical/cloud-penetration-testing/azure-cloud-vulnerability-credmanifest/
 
+
+### AWS SageMaker Jupyter Notebook instance CSRF
+- Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read senestive data and execute arbitrary actions in customer environments.
+- Platform: AWS
+- Severity: Medium
+- Date: December 2, 2021
+- Discoverer:  Gafnit Amiga, Lightspin 
+- Customer action: N/A
+- References: 
+  - https://blog.lightspin.io/aws-sagemaker-notebook-takeover-vulnerability
+
+
+### AWS cross-account vulnerabilites in CloudTrail, AWS Config, Serverless Repository, GuardDuty
+- Summary: AWS provided over-permissive resource policy to some services (CloudTrail, AWS Config, Serverless Repository, GuardDuty) allowing other AWS tenants to perform read and write operations on vulnerable user
+- Platform: AWS
+- Severity: High
+- Date: August 4, 2021
+- Discoverer:  Shir Tamari & Ami Luttwak, Wiz 
+- Customer action: Update vulnerable IAM policies (add scoping condition)
+- References: 
+  - https://www.wiz.io/blog/black-hat-2021-aws-cross-account-vulnerabilities-how-isolated-is-your-cloud-environment
 
