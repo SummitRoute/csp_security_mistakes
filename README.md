@@ -221,6 +221,19 @@ Where possible I also want to ensure customers know what steps they can take to 
 
 
 
+### AWS: API Gateway Custom Authorizer Documentation and Design Issues
+- Summary: AWS documentation and code blueprints misled developers into writing lambda authorizer code that was overly permissive and could allow an attacker to access API endpoints they did not intend. Also, the way permissions are represented is not granular enough to securely control access to API endpoints with path parameters.
+- Platform: AWS
+- Severity: Medium
+- Date: June 21, 2021
+- Discoverer: Alexandre Sieira (https://twitter.com/AlexandreSieira) and Leonardo Viveiros (https://twitter.com/LeonardoViveiro), Tenchi Security.
+- Customer action: review/update lambda authorizer code, implement additional authorization checks in API endpoints.
+- References:
+  - https://www.tenchisecurity.com/blog/thefaultinourstars
+  - https://youtu.be/bsPKk7WDOnE
+
+
+
 ### GCP: Org policies bypass
 - Summary: Allows an attacker with privileges in the account to share resources outside of the account even when an org policy restricts this, thus enabling them to backdoor their access.
 - Platform: GCP
