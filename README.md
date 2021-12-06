@@ -56,6 +56,17 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://www.upguard.com/breaches/identity-and-access-misstep-how-an-amazon-engineer-exposed-credentials-and-more
 
 
+### GCP: AI Hub Jupyter Notebook instance CSRF
+Summary: AI Hub Jupyter Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments.
+Platform: GCP
+Severity: Medium
+Date: March 10, 2020
+Discoverer: s1r1us
+Customer action: N/A
+References:
+https://blog.s1r1us.ninja/research/cookie-tossing-to-rce-on-google-cloud-jupyter-notebooks
+
+
 ### AWS: GuardDuty detection bypass via cloudtrail:PutEventSelectors
 - Summary: GuardDuty detects CloudTrail being disabled, but did not detect if you filtered out all events from CloudTrail, resulting in defenders having no logs to review. Require privileged access in victim account, resulting in limited visibility.
 - Platform: AWS
