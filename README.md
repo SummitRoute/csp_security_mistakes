@@ -22,6 +22,17 @@ Where possible I also want to ensure customers know what steps they can take to 
 ---------------------------------------------------------------------------------------
 # Issues
 
+### AWS: Penetration testing policy forbids research into services and infrastructure
+- Summary: AWS's penetration testing policy forbids research into AWS services and AWS infrastructure.
+- Platform: AWS
+- Severity: Medium
+- Date: December 12, 2015
+- Discoverer: N/A
+- Customer action: N/A
+- References: 
+  - https://aws.amazon.com/security/penetration-testing/
+  - http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/
+
 ### AWS: Launching EC2s did not require specifying AMI owner: CVE-2018-15869
 - Summary: Attackers had put malicious AMIs in the marketplace
 - Platform: AWS
