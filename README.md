@@ -364,4 +364,11 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://blog.lightspin.io/aws-sagemaker-notebook-takeover-vulnerability
 
 
-
+### GCP Default compute account is project Editor
+- Summary: When the compute API is enabled on a GCP Project, the default compute account is created. This account gets the primitive role Editor assigned by default, which allows for a wide variety of privilege excalation and resource abuse in the project. Especially, all new VMs created inherit this permissions by default  
+- Platform: GCP
+- Severity: High
+- Date: Since the creation of GCP
+- Customer action: Remove these permissions, it can be done via an organization policy
+- References:
+  - https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_default_grants
