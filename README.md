@@ -353,6 +353,17 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://www.netspi.com/blog/technical/cloud-penetration-testing/azure-cloud-vulnerability-credmanifest/
 
 
+### AWS API Gateway HTTP header smuggling
+- Summary: A flaw in AWS API Gateway enabled hiding HTTP request headers. Tampering with HTTP requests visibility enabled bypassing IP restrictions, cache poisoning and request smuggling. 
+- Platform: AWS
+- Severity: Low
+- Date: November 10, 2021
+- Discoverer:  Daniel Thatcher, intruder.io
+- Customer action: N/A
+- References: 
+  - https://www.intruder.io/research/practical-http-header-smuggling
+
+
 ### AWS Fall 2021, SOC 2 Type 2 failure
 - Summary: Information is under NDA, but anyone with an AWS account can read it on page 98.
 - Platform: AWS
