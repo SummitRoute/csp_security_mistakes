@@ -22,6 +22,16 @@ Where possible I also want to ensure customers know what steps they can take to 
 ---------------------------------------------------------------------------------------
 # Issues
 
+### AWS: Overprivileged AWS Support IAM Role Policy
+- Summary: AWS added `s3:getObject` action to `AWSSupportServiceRolePolicy` IAM Policy used by AWS Support teams.
+- Platform: AWS
+- Severity: Medium
+- Date: December 22, 2021
+- Discoverer: [Scott Piper](https://twitter.com/0xdabbad00/status/1473448889948598275)
+- Customer action: Use KMS-CMK for bucket encryption, Use Least privilege on resources policies (Buckets)
+- References: 
+  - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
+
 ### AWS: Penetration testing policy forbids research into services and infrastructure
 - Summary: AWS's penetration testing policy forbids research into AWS services and AWS infrastructure.
 - Platform: AWS
