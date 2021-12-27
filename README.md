@@ -134,11 +134,12 @@ Where possible I also want to ensure customers know what steps they can take to 
 - Summary: For 6 years, it was not possible to see what hosted zones an attacker may have created in an account.
 - Platform: AWS
 - Severity: Low
-- Date: June 18, 2020
-- Discoverer: Aidan Steele
+- Date: May 13, 2019
+- Discoverer: Ryan Gerstenkorn
 - Customer action: Audit your VPC hosted zones
 - References: 
   - https://twitter.com/__steele/status/1273748905826455552
+  - https://blog.ryanjarv.sh/2019/05/24/backdooring-route53-with-cross-account-dns.html
 
 ### AWS: XSS on EC2 web console
 - Summary: Display of EC2 tags had XSS
