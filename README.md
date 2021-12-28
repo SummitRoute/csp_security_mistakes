@@ -7,7 +7,9 @@ The purpose of this project is to ensure there is a record of these mistakes. Al
 
 Where possible I also want to ensure customers know what steps they can take to detect or prevent the issues identified.  Mitre, which is the organization that manages CVEs, has generally avoided providing CVEs for security issues of the cloud providers under the assumption that all issues can be resolved by the cloud provider and therefore do not need a tracking number. This view is sometimes incorrect, and even when the issue can be resolved by the cloud provider, I still believe it warrants having a record.  Similar views are expanded on by Alon Schindel and Shir Tamari from Wiz.io in their post [Security industry call to action: we need a cloud vulnerability database](
  https://www.wiz.io/blog/security-industry-call-to-action-we-need-a-cloud-vulnerability-database).
-
+ 
+Concern has been raised that AWS restricts what they allow to be pentested (their (guidance)[https://aws.amazon.com/security/penetration-testing/] and (historic guidance)[http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/]) and has no (bug bounty)[https://twitter.com/SpenGietz/status/1252971138352701442] which are believed by some to limit the issues that become public with AWS.
+ 
 ## Field explanations
 
 #### Name: Name of the vulnerability if available, or a short explanation
@@ -22,26 +24,15 @@ Where possible I also want to ensure customers know what steps they can take to 
 ---------------------------------------------------------------------------------------
 # Issues
 
-### AWS: Overprivileged AWS Support IAM Role Policy
-- Summary: AWS added `s3:getObject` action to `AWSSupportServiceRolePolicy` IAM Policy used by AWS Support teams.
-- Platform: AWS
-- Severity: Medium
-- Date: December 22, 2021
-- Discoverer: [Scott Piper](https://twitter.com/0xdabbad00/status/1473448889948598275)
-- Customer action: Use KMS-CMK for bucket encryption, Use Least privilege on resources policies (Buckets)
-- References: 
-  - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
 
-### AWS: Penetration testing policy forbids research into services and infrastructure
-- Summary: AWS's penetration testing policy forbids research into AWS services and AWS infrastructure.
-- Platform: AWS
-- Severity: Medium
-- Date: December 12, 2015
-- Discoverer: N/A
-- Customer action: N/A
-- References: 
-  - https://aws.amazon.com/security/penetration-testing/
-  - http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/
+### GCP Default compute account is project Editor
+- Summary: When the compute API is enabled on a GCP Project, the default compute account is created. This account gets the primitive role Editor assigned by default, which allows for a wide variety of privilege excalation and resource abuse in the project. Especially, all new VMs created inherit this permissions by default. This issue is arguably a technical decision by GCP, but the documents advise customers to undo this.
+- Platform: GCP
+- Severity: High
+- Date: Since the creation of GCP
+- Customer action: Remove these permissions, it can be done via an organization policy
+- References:
+  - https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_default_grants
 
 ### AWS: Launching EC2s did not require specifying AMI owner: CVE-2018-15869
 - Summary: Attackers had put malicious AMIs in the marketplace
@@ -99,22 +90,12 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://github.com/RhinoSecurityLabs/Cloud-Security-Research/tree/master/AWS/cloudtrail_guardduty_bypass
 
-### AWS: Lack of bug bounty
-- Summary: Amazon goes public with their HackerOne bug bounty program but excludes AWS
-- Platform: AWS
-- Severity: Low
-- Date: April 22, 2020
-- Discoverer: Spencer Gietzen, Rhino Security
-- Customer action: N/A
-- References: 
-  - https://twitter.com/SpenGietz/status/1252971138352701442
 
 ### AWS: Lack of internal change controls for IAM managed policies
 - Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
 - Platform: AWS
 - Severity: Low
 - Date: October 15, 2020
-- Discoverer: Aidan Steele
 - Customer action: N/A
 - References: 
   - https://twitter.com/__steele/status/1316909785607012352
@@ -248,7 +229,6 @@ Where possible I also want to ensure customers know what steps they can take to 
 - Platform: AWS
 - Severity: Low
 - Date: December 22, 2020
-- Discoverer:  Scott Piper 
 - Customer action: N/A
 - References: 
   - https://twitter.com/awswhatsnew/status/1341461386983952384
@@ -370,14 +350,13 @@ Where possible I also want to ensure customers know what steps they can take to 
 - Platform: AWS
 - Severity: Low
 - Date: November 15, 2021
-- Discoverer:  Scott Piper 
 - Customer action: N/A
 - References: 
   - https://twitter.com/AWSSecurityInfo/status/1460326602982793220
 
 
 ### AWS SageMaker Jupyter Notebook instance CSRF
-- Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments.
+- Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments. This issue is identical to (GCP's issue)[https://github.com/SummitRoute/csp_security_mistakes#gcp-ai-hub-jupyter-notebook-instance-csrf] from a year earlier.
 - Platform: AWS
 - Severity: Medium
 - Date: December 2, 2021
@@ -386,12 +365,22 @@ Where possible I also want to ensure customers know what steps they can take to 
 - References: 
   - https://blog.lightspin.io/aws-sagemaker-notebook-takeover-vulnerability
 
-
-### GCP Default compute account is project Editor
-- Summary: When the compute API is enabled on a GCP Project, the default compute account is created. This account gets the primitive role Editor assigned by default, which allows for a wide variety of privilege excalation and resource abuse in the project. Especially, all new VMs created inherit this permissions by default  
-- Platform: GCP
+### Azure NotLegit: App Service vulnerability exposed source code repositories
+- Summary: 
+- Platform: Azure
 - Severity: High
-- Date: Since the creation of GCP
+- Date: December 21, 2021
+- Discoverer: Shir Tamari, Wiz.io
 - Customer action: Remove these permissions, it can be done via an organization policy
 - References:
   - https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_default_grants
+
+### AWS: Overprivileged AWS Support IAM Role Policy
+- Summary: AWS added `s3:getObject` action to `AWSSupportServiceRolePolicy` IAM Policy used by AWS Support teams.
+- Platform: AWS
+- Severity: Medium
+- Date: December 22, 2021
+- Discoverer: [Scott Piper](https://twitter.com/0xdabbad00/status/1473448889948598275)
+- Customer action: Use KMS-CMK for bucket encryption, Use Least privilege on resources policies (Buckets)
+- References: 
+  - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
