@@ -402,7 +402,7 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://twitter.com/AWSSecurityInfo/status/1460326602982793220
 
 ### AWS SageMaker Jupyter Notebook instance CSRF
-- Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments. This issue is identical to (GCP's issue)[https://github.com/SummitRoute/csp_security_mistakes#gcp-ai-hub-jupyter-notebook-instance-csrf] from a year earlier.
+- Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments. This issue is identical to [GCP's issue](https://github.com/SummitRoute/csp_security_mistakes#gcp-ai-hub-jupyter-notebook-instance-csrf) from a year earlier.
 - Platform: AWS
 - Severity: Medium
 - Date: December 2, 2021
