@@ -83,7 +83,7 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Platform: AWS
 - Severity: Low
 - Date: May 13, 2019
-- Discoverer: Ryan Gerstenkorn
+- Discoverer: Ryan Gerstenkorn (https://twitter.com/Ryan_Jarv/
 - Customer action: Audit your VPC hosted zones
 - References: 
   - https://twitter.com/__steele/status/1273748905826455552
@@ -245,6 +245,17 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://onecloudplease.com/blog/security-september-still-early-days-for-abac
+
+### AWS: Route table modification to imitate metadata service 
+- Summary: An attacker with sufficient privileges in AWS to modify the route table and some other EC2 privileges, could pretend to be a metadata server and provide an attacker controlled bootup script to EC2s to move laterally.
+- Platform: AWS
+- Severity: Low
+- Date: October 19, 2020
+- Discoverer:  Ryan Gerstenkorn (https://twitter.com/Ryan_Jarv/)
+- Customer action: N/A
+- References: 
+  - https://github.com/RyanJarv/EC2FakeImds
+  - https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html
 
 ### AWS: Fall 2020, SOC 2 Type 2 failure
 - Summary: Information is under NDA, but anyone with an AWS account can read it on page 120 and 121.
