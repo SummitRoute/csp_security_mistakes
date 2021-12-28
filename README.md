@@ -56,6 +56,15 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://www.youtube.com/watch?v=F3JmBhTQmyY&t=2475s
   - https://www.wiz.io/blog/black-hat-2021-aws-cross-account-vulnerabilities-how-isolated-is-your-cloud-environment
 
+### Azure: Cloudshell terminal escape
+- Summary: If attacker controlled data is viewed in Cloudshell it could have led to code execution.
+- Platform: Azure
+- Severity: Medium
+- Date: January 9, 2019
+- Discoverer: Felix Wilhelm, Google
+- Customer action: N/A
+- References: 
+  - https://twitter.com/_fel1x/status/1083085715565621250
 
 ### AWS: AWS employee posts confidential AWS data, including possibly customer access keys and other customer information
 - Summary: AWS employee pushed data to a public github bucket.  AWS's public statement is that "the code repository was used by the engineer in a personal capacity, and claimed no customer data or company systems were exposed." but it appears that minimally there was AWS confidential data, and also may have included various forms of confidential customer information (correspondance, access keys, and more). See the referenced stories and debate [here](https://github.com/SummitRoute/csp_security_mistakes/issues/17).
@@ -254,6 +263,17 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://twitter.com/awswhatsnew/status/1341461386983952384
 
+
+### AWS: Cloudshell terminal escape
+- Summary: If attacker controlled data is viewed in Cloudshell it could have led to code execution. This exact same issue existed in Azure previously.
+- Platform: AWS
+- Severity: Medium
+- Date: February 8, 2021
+- Discoverer: Felix Wilhelm, Google
+- Customer action: N/A
+- References: 
+  - https://bugs.chromium.org/p/project-zero/issues/detail?id=2154
+  - https://twitter.com/_fel1x/status/1391712232380194818
 
 
 ### GCP: Org policies bypass
