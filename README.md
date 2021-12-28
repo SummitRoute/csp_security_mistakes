@@ -99,6 +99,18 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://twitter.com/__steele/status/1316909785607012352
+ 
+
+
+### AWS: Bypasses in IAM policies and over-privileged
+- Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
+- Platform: AWS
+- Severity: Medium
+- Customer action: Review the policies provided by AWS
+- References: 
+  - https://summitroute.com/blog/2019/06/18/aws_iam_managed_policy_review/
+  - https://duo.com/blog/potential-gaps-in-suggested-amazon-web-services-security-policies-for-mfa
+  - https://medium.com/ymedialabs-innovation/an-aws-managed-policy-that-allowed-granting-root-admin-access-to-any-role-51b409ea7ff0
 
 
 ### AWS: AssumeRole vendor issues with confused deputy
