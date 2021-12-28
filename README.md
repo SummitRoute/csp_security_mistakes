@@ -66,8 +66,8 @@ Where possible I also want to ensure customers know what steps they can take to 
   - https://www.wiz.io/blog/black-hat-2021-aws-cross-account-vulnerabilities-how-isolated-is-your-cloud-environment
 
 
-### AWS: AWS employee posts customer access keys and information
-- Summary: AWS employee pushed data to a public github bucket containing AWS access keys and other credentials of customers and their data
+### AWS: AWS employee posts confidential AWS data, including possibly customer access keys and other customer information
+- Summary: AWS employee pushed data to a public github bucket.  AWS's public statement is that "the code repository was used by the engineer in a personal capacity, and claimed no customer data or company systems were exposed." but it appears that minimally there was AWS confidential data, and also may have included various forms of confidential customer information (correspondance, access keys, and more). See the referenced stories and debate [here](https://github.com/SummitRoute/csp_security_mistakes/issues/17).
 - Platform: AWS
 - Severity: Critical
 - Date: January 13, 2020
@@ -75,6 +75,7 @@ Where possible I also want to ensure customers know what steps they can take to 
 - Customer action: Roll impacted credentials
 - References: 
   - https://www.upguard.com/breaches/identity-and-access-misstep-how-an-amazon-engineer-exposed-credentials-and-more
+  - https://www.theregister.com/2020/01/23/aws_engineer_credentials_github/
 
 
 ### GCP: AI Hub Jupyter Notebook instance CSRF
