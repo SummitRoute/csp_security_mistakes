@@ -235,6 +235,15 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://frichetten.com/blog/aws-api-enum-vuln/
   - https://github.com/Frichetten/aws_stealth_perm_enum
 
+### GCP: DHCP abuse for code exec
+- Summary: Under certain conditions (which I don't entirely understand), an attacker can flood DHCP packets to the victim VM, allowing it to impersonate the Metadata server, and grant themself SSH access.
+- Platform: GCP
+- Severity: Medium
+- Date: September 26, 2020
+- Discoverer:  Imre Rad
+- Customer action: N/A
+- References: 
+  - https://github.com/irsl/gcp-dhcp-takeover-code-exec
 
 ### AWS: Fall 2020, SOC 2 Type 2 failure
 - Summary: Information is under NDA, but anyone with an AWS account can read it on page 120 and 121.
