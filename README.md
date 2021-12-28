@@ -28,17 +28,29 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 ### GCP Default compute account is project Editor
 - Summary: When the compute API is enabled on a GCP Project, the default compute account is created. This account gets the primitive role Editor assigned by default, which allows for a wide variety of privilege excalation and resource abuse in the project. Especially, all new VMs created inherit this permissions by default. This issue is arguably a technical decision by GCP, but the documents advise customers to undo this.
 - Platform: GCP
-- Severity: High
+- Severity: Medium
 - Date: Since the creation of GCP
 - Customer action: Remove these permissions, it can be done via an organization policy
 - References:
   - https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_default_grants
 
+### AWS: Bypasses in IAM policies and over-privileged
+- Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
+- Platform: AWS
+- Severity: Medium
+- Date: November 17, 2017 (date and discoverer is of the first issue, references provide other examples by other individuals)
+- Discoverer: Scott Piper, Duo Labs + Summit Route
+- Customer action: Review the policies provided by AWS
+- References: 
+  - https://duo.com/blog/potential-gaps-in-suggested-amazon-web-services-security-policies-for-mfa
+  - https://summitroute.com/blog/2019/06/18/aws_iam_managed_policy_review/
+  - https://medium.com/ymedialabs-innovation/an-aws-managed-policy-that-allowed-granting-root-admin-access-to-any-role-51b409ea7ff0
+
 ### AWS: Launching EC2s did not require specifying AMI owner: CVE-2018-15869
 - Summary: Attackers had put malicious AMIs in the marketplace
 - Platform: AWS
 - Severity: Medium
-- Date: Augst 13, 2018
+- Date: August 13, 2018
 - Discoverer: Megan Marsh (https://github.com/SwampDragons)
 - Customer action: Update CLI and other tools that create EC2s
 - References: 
@@ -66,73 +78,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://twitter.com/_fel1x/status/1083085715565621250
 
-### AWS: AWS employee posts confidential AWS data, including possibly customer access keys and other customer information
-- Summary: AWS employee pushed data to a public github bucket.  AWS's public statement is that "the code repository was used by the engineer in a personal capacity, and claimed no customer data or company systems were exposed." but it appears that minimally there was AWS confidential data, and also may have included various forms of confidential customer information (correspondance, access keys, and more). See the referenced stories and debate [here](https://github.com/SummitRoute/csp_security_mistakes/issues/17).
-- Platform: AWS
-- Severity: Critical
-- Date: January 13, 2020
-- Discoverer: Upguard
-- Customer action: Roll impacted credentials
-- References: 
-  - https://www.upguard.com/breaches/identity-and-access-misstep-how-an-amazon-engineer-exposed-credentials-and-more
-  - https://www.theregister.com/2020/01/23/aws_engineer_credentials_github/
-
-
-### GCP: AI Hub Jupyter Notebook instance CSRF
-- Summary: AI Hub Jupyter Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments.
-- Platform: GCP
-- Severity: Medium
-- Date: March 10, 2020
-- Discoverer: s1r1us
-- Customer action: N/A
-- References:
-  - https://blog.s1r1us.ninja/research/cookie-tossing-to-rce-on-google-cloud-jupyter-notebooks
-
-
-### AWS: GuardDuty detection bypass via cloudtrail:PutEventSelectors
-- Summary: GuardDuty detects CloudTrail being disabled, but did not detect if you filtered out all events from CloudTrail, resulting in defenders having no logs to review. Require privileged access in victim account, resulting in limited visibility.
-- Platform: AWS
-- Severity: Low
-- Date: April 23, 2020
-- Discoverer: Spencer Gietzen, Rhino Security
-- Customer action: Setup detections independent of GuardDuty
-- References: 
-  - https://github.com/RhinoSecurityLabs/Cloud-Security-Research/tree/master/AWS/cloudtrail_guardduty_bypass
-
-
-### AWS: Lack of internal change controls for IAM managed policies
-- Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
-- Platform: AWS
-- Severity: Low
-- Date: October 15, 2020
-- Customer action: N/A
-- References: 
-  - https://twitter.com/__steele/status/1316909785607012352
- 
-
-
-### AWS: Bypasses in IAM policies and over-privileged
-- Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
-- Platform: AWS
-- Severity: Medium
-- Customer action: Review the policies provided by AWS
-- References: 
-  - https://summitroute.com/blog/2019/06/18/aws_iam_managed_policy_review/
-  - https://duo.com/blog/potential-gaps-in-suggested-amazon-web-services-security-policies-for-mfa
-  - https://medium.com/ymedialabs-innovation/an-aws-managed-policy-that-allowed-granting-root-admin-access-to-any-role-51b409ea7ff0
-
-
-### AWS: AssumeRole vendor issues with confused deputy
-- Summary: Kesten identifies that you may be able to access other AWS customers through their vendors
-- Platform: AWS
-- Severity: Medium
-- Date: June 12, 2020
-- Discoverer: Kesten Broughton, Praetorian
-- Customer action: Audit your vendor roles
-- References: 
-  - https://www.praetorian.com/blog/aws-iam-assume-role-vulnerabilities/
-
-
 ### AWS: VPC Hosted Zones unauditable
 - Summary: For 6 years, it was not possible to see what hosted zones an attacker may have created in an account.
 - Platform: AWS
@@ -144,6 +89,67 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://twitter.com/__steele/status/1273748905826455552
   - https://blog.ryanjarv.sh/2019/05/24/backdooring-route53-with-cross-account-dns.html
 
+### AWS: ALB HTTP request smuggling
+- Summary: ALBs found vulnerable to HTTP request smuggling (desync attack).
+- Platform: AWS
+- Severity: Medium
+- Date: October 4, 2019
+- Discoverer: Arkadiy Tetelman (https://twitter.com/arkadiyt), Chime; original issue by James Kettle (https://twitter.com/albinowax), Portswigger
+- Customer action: Configure setting on your ALBs
+- References: 
+  - https://twitter.com/arkadiyt/status/1180174359840862209
+  - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-attributes
+
+### AWS: AWS employee posts confidential AWS data, including possibly customer access keys and other customer information
+- Summary: AWS employee pushed data to a public github bucket.  AWS's public statement is that "the code repository was used by the engineer in a personal capacity, and claimed no customer data or company systems were exposed." but it appears that minimally there was AWS confidential data, and also may have included various forms of confidential customer information (correspondance, access keys, and more). See the referenced stories and debate [here](https://github.com/SummitRoute/csp_security_mistakes/issues/17).
+- Platform: AWS
+- Severity: Critical
+- Date: January 13, 2020
+- Discoverer: Upguard
+- Customer action: Roll impacted credentials
+- References: 
+  - https://www.upguard.com/breaches/identity-and-access-misstep-how-an-amazon-engineer-exposed-credentials-and-more
+  - https://www.theregister.com/2020/01/23/aws_engineer_credentials_github/
+
+### GCP: AI Hub Jupyter Notebook instance CSRF
+- Summary: AI Hub Jupyter Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments.
+- Platform: GCP
+- Severity: Medium
+- Date: March 10, 2020
+- Discoverer: s1r1us
+- Customer action: N/A
+- References:
+  - https://blog.s1r1us.ninja/research/cookie-tossing-to-rce-on-google-cloud-jupyter-notebooks
+
+### AWS: GuardDuty detection bypass via cloudtrail:PutEventSelectors
+- Summary: GuardDuty detects CloudTrail being disabled, but did not detect if you filtered out all events from CloudTrail, resulting in defenders having no logs to review. Require privileged access in victim account, resulting in limited visibility.
+- Platform: AWS
+- Severity: Low
+- Date: April 23, 2020
+- Discoverer: Spencer Gietzen, Rhino Security
+- Customer action: Setup detections independent of GuardDuty
+- References: 
+  - https://github.com/RhinoSecurityLabs/Cloud-Security-Research/tree/master/AWS/cloudtrail_guardduty_bypass
+
+### AWS: Lack of internal change controls for IAM managed policies
+- Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
+- Platform: AWS
+- Severity: Low
+- Date: October 15, 2020
+- Customer action: N/A
+- References: 
+  - https://twitter.com/__steele/status/1316909785607012352
+
+### AWS: AssumeRole vendor issues with confused deputy
+- Summary: Kesten identifies that you may be able to access other AWS customers through their vendors
+- Platform: AWS
+- Severity: Medium
+- Date: June 12, 2020
+- Discoverer: Kesten Broughton, Praetorian
+- Customer action: Audit your vendor roles
+- References: 
+  - https://www.praetorian.com/blog/aws-iam-assume-role-vulnerabilities/
+
 ### AWS: XSS on EC2 web console
 - Summary: Display of EC2 tags had XSS
 - Platform: AWS
@@ -153,16 +159,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://embracethered.com/blog/posts/2020/aws-xss-cross-site-scripting-vulnerability/
-
-### AWS: Terms and conditions allows sharing customer data
-- Summary: Use of the AI services on AWS allows customer data to be moved outside of the regions it is used in and potentially shared with third-parties.
-- Platform: AWS
-- Severity: Medium
-- Date: July 8, 2020
-- Discoverer: Ben Bridts
-- Customer action: Opt out via Organization AI opt-out policy: https://summitroute.com/blog/2021/01/06/opting_out_of_aws_ai_data_usage/
-- References: 
-  - https://twitter.com/benbridts/status/1280934515305824256
 
 ### AWS: S3 Crypto SDK vulns: CVE-2020-8912 and CVE-2020-8911
 - Summary: 
@@ -178,16 +174,15 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://github.com/google/security-research/security/advisories/GHSA-7f33-f4f5-xwgw
   - https://aws.amazon.com/blogs/developer/updates-to-the-amazon-s3-encryption-client/
 
-### AWS: ALB HTTP request smuggling
-- Summary: ALBs found vulnerable to HTTP request smuggling (desync attack).
+### AWS: Terms and conditions allows sharing customer data
+- Summary: Use of the AI services on AWS allows customer data to be moved outside of the regions it is used in and potentially shared with third-parties.
 - Platform: AWS
 - Severity: Medium
-- Date: October 4, 2019
-- Discoverer: Arkadiy Tetelman (https://twitter.com/arkadiyt), Chime; original issue by James Kettle (https://twitter.com/albinowax), Portswigger
-- Customer action: Configure setting on your ALBs
+- Date: July 8, 2020
+- Discoverer: Ben Bridts
+- Customer action: Opt out via Organization AI opt-out policy: https://summitroute.com/blog/2021/01/06/opting_out_of_aws_ai_data_usage/
 - References: 
-  - https://twitter.com/arkadiyt/status/1180174359840862209
-  - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-attributes
+  - https://twitter.com/benbridts/status/1280934515305824256
 
 ### AWS: Execution in CloudFormation service account
 - Summary: Ability to run arbitrary Lambda code in an AWS managed account, with privileges to access some data of other customer accounts
@@ -198,40 +193,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://onecloudplease.com/blog/security-september-cataclysms-in-the-cloud-formations
-
-
-### AWS: CloudFormer review
-- Summary: Audit of AWS open-source project identifies so many issues AWS takes it down
-- Platform: AWS
-- Severity: Low
-- Date: September 25, 2020
-- Discoverer: Karim El-Melhaoui (https://twitter.com/KarimMelhaoui)
-- Customer action: N/A
-- References: 
-  - https://blog.karims.cloud/2020/09/25/cloudformer-review-part-1.html
-
-### AWS: Encryption SDK issues
-- Summary: 
-- Platform: AWS
-- Severity: Low
-- Date: September 28, 2020
-- Discoverer: Thái "thaidn" Dương (https://twitter.com/XorNinja), Google
-- Customer action: Update SDK
-- References: 
-  - https://twitter.com/XorNinja/status/1310587707605659649
-  - https://vnhacker.blogspot.com/2020/09/advisory-security-issues-in-aws-kms-and.html
-
-
-### AWS: S3 bucket tagging not restricted
-- Summary: Lack of the privilege s3:PutBucketTagging did not restrict the ability to tag S3 buckets
-- Platform: AWS
-- Severity: Low
-- Date: September 28, 2020
-- Discoverer:  Ian Mckay (https://twitter.com/iann0036)
-- Customer action: N/A
-- References: 
-  - https://onecloudplease.com/blog/security-september-still-early-days-for-abac
-
 
 ### AWS: Identification of privileges without being logged by CloudTrail 
 - Summary: An attacker could figure out what privileges they have in a victim account, without being logged in CloudTrail. It took AWS over 273 days to fix this.
@@ -244,6 +205,16 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://frichetten.com/blog/aws-api-enum-vuln/
   - https://github.com/Frichetten/aws_stealth_perm_enum
 
+### AWS: CloudFormer review
+- Summary: Audit of AWS open-source project identifies so many issues AWS takes it down
+- Platform: AWS
+- Severity: Low
+- Date: September 25, 2020
+- Discoverer: Karim El-Melhaoui (https://twitter.com/KarimMelhaoui)
+- Customer action: N/A
+- References: 
+  - https://blog.karims.cloud/2020/09/25/cloudformer-review-part-1.html
+
 ### GCP: DHCP abuse for code exec
 - Summary: Under certain conditions (which I don't entirely understand), an attacker can flood DHCP packets to the victim VM, allowing it to impersonate the Metadata server, and grant themself SSH access.
 - Platform: GCP
@@ -254,6 +225,27 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://github.com/irsl/gcp-dhcp-takeover-code-exec
 
+### AWS: Encryption SDK issues
+- Summary: 
+- Platform: AWS
+- Severity: Low
+- Date: September 28, 2020
+- Discoverer: Thái "thaidn" Dương (https://twitter.com/XorNinja), Google
+- Customer action: Update SDK
+- References: 
+  - https://twitter.com/XorNinja/status/1310587707605659649
+  - https://vnhacker.blogspot.com/2020/09/advisory-security-issues-in-aws-kms-and.html
+
+### AWS: S3 bucket tagging not restricted
+- Summary: Lack of the privilege s3:PutBucketTagging did not restrict the ability to tag S3 buckets
+- Platform: AWS
+- Severity: Low
+- Date: September 28, 2020
+- Discoverer:  Ian Mckay (https://twitter.com/iann0036)
+- Customer action: N/A
+- References: 
+  - https://onecloudplease.com/blog/security-september-still-early-days-for-abac
+
 ### AWS: Fall 2020, SOC 2 Type 2 failure
 - Summary: Information is under NDA, but anyone with an AWS account can read it on page 120 and 121.
 - Platform: AWS
@@ -262,7 +254,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://twitter.com/awswhatsnew/status/1341461386983952384
-
 
 ### AWS: Cloudshell terminal escape
 - Summary: If attacker controlled data is viewed in Cloudshell it could have led to code execution. This exact same issue existed in Azure previously.
@@ -275,7 +266,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://bugs.chromium.org/p/project-zero/issues/detail?id=2154
   - https://twitter.com/_fel1x/status/1391712232380194818
 
-
 ### GCP: Org policies bypass
 - Summary: Allows an attacker with privileges in the account to share resources outside of the account even when an org policy restricts this, thus enabling them to backdoor their access.
 - Platform: GCP
@@ -285,7 +275,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://kattraxler.github.io/gcp/hacking/2021/09/10/gcp-org-policy-bypass-ai-notebooks.html
-
 
 ### AWS: Lightsail object storage access keys logged
 - Summary: Lightsail object storage allows the creation of access keys which were logged to CloudTrail (both access key and secret key)
@@ -319,7 +308,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://unit42.paloaltonetworks.com/azure-container-instances/
 
-
 ### Azure: Log analytics role privesc
 - Summary: Privilege escalation of Log Analytics Contributor role to Subscription Contributor role.
 - Platform: Azure
@@ -340,7 +328,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://www.wiz.io/blog/secret-agent-exposes-azure-customers-to-unauthorized-code-execution
 
-
 ### GCP IAP bypass
 - Summary: Convincing a victim to click a specially crafted link would allow the attacker to bypass the Identity-Aware Proxy (a core component of BeyondCorp). 
 - Platform: GCP
@@ -350,7 +337,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://cloud.google.com/support/bulletins#gcp-2021-020
-
 
 ### AWS Workspace client RCE - CVE-2021-38112
 - Summary: If a user with AWS WorkSpaces 3.0.10-3.1.8 installed visits a page in their web browser with attacker controlled content, the attacker can get zero click RCE under common circumstances.
@@ -374,7 +360,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
   - https://github.com/microsoft/aad-app-credential-tools/blob/main/azure-migrate/azure-migrate-credential-rotation-guide.md
   - https://www.netspi.com/blog/technical/cloud-penetration-testing/azure-cloud-vulnerability-credmanifest/
 
-
 ### AWS API Gateway HTTP header smuggling
 - Summary: A flaw in AWS API Gateway enabled hiding HTTP request headers. Tampering with HTTP requests visibility enabled bypassing IP restrictions, cache poisoning and request smuggling. 
 - Platform: AWS
@@ -385,7 +370,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://www.intruder.io/research/practical-http-header-smuggling
 
-
 ### AWS Fall 2021, SOC 2 Type 2 failure
 - Summary: Information is under NDA, but anyone with an AWS account can read it on page 98.
 - Platform: AWS
@@ -394,7 +378,6 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: N/A
 - References: 
   - https://twitter.com/AWSSecurityInfo/status/1460326602982793220
-
 
 ### AWS SageMaker Jupyter Notebook instance CSRF
 - Summary: AWS SageMaker Notebook server lacked a check of the Origin header that led to a CSRF vulnerability. An attacker could have read sensitive data and execute arbitrary actions in customer environments. This issue is identical to (GCP's issue)[https://github.com/SummitRoute/csp_security_mistakes#gcp-ai-hub-jupyter-notebook-instance-csrf] from a year earlier.
