@@ -8,7 +8,7 @@ The purpose of this project is to ensure there is a record of these mistakes. Al
 Where possible I also want to ensure customers know what steps they can take to detect or prevent the issues identified.  Mitre, which is the organization that manages CVEs, has generally avoided providing CVEs for security issues of the cloud providers under the assumption that all issues can be resolved by the cloud provider and therefore do not need a tracking number. This view is sometimes incorrect, and even when the issue can be resolved by the cloud provider, I still believe it warrants having a record.  Similar views are expanded on by Alon Schindel and Shir Tamari from Wiz.io in their post [Security industry call to action: we need a cloud vulnerability database](
  https://www.wiz.io/blog/security-industry-call-to-action-we-need-a-cloud-vulnerability-database).
  
-Concern has been raised that AWS restricts what they allow to be pentested (their (guidance)[https://aws.amazon.com/security/penetration-testing/] and (historic guidance)[http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/]) and has no (bug bounty)[https://twitter.com/SpenGietz/status/1252971138352701442] which are believed by some to limit the issues that become public with AWS.
+Concern has been raised that AWS restricts what they allow to be pentested (their [guidance](https://aws.amazon.com/security/penetration-testing/) and [historic guidance](http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/)) and has no [bug bounty](https://twitter.com/SpenGietz/status/1252971138352701442) which are believed by some to limit the issues that become public with AWS.
  
 ## Field explanations
 
