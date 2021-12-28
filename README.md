@@ -276,6 +276,17 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - References: 
   - https://kattraxler.github.io/gcp/hacking/2021/09/10/gcp-org-policy-bypass-ai-notebooks.html
 
+### AWS: XSS in web console
+- Summary: If an attacker can launch elasticbeanstalk in the victim environment and get a victim to view a page in the web console, they can get XSS.
+- Platform: AWS
+- Severity: Low
+- Date: June 3, 2021
+- Discoverer: Nick Frichette (https://twitter.com/Frichette_n)
+- Customer action: N/A
+- References: 
+  - https://twitter.com/Frichette_n/status/1400517723910819844
+  - https://frichetten.com/blog/xss_in_aws_console/
+
 ### AWS: Lightsail object storage access keys logged
 - Summary: Lightsail object storage allows the creation of access keys which were logged to CloudTrail (both access key and secret key)
 - Platform: AWS
