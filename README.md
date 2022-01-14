@@ -326,9 +326,21 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Severity: Critical
 - Date: September 9, 2021
 - Discoverer: Yuval Avrahami, Palo Alto
-- Customer action: 
+- Customer action: "revoking any privileged credentials that were deployed to the platform before Aug. 31, 2021, and checking their access logs for irregularities."
 - References: 
   - https://unit42.paloaltonetworks.com/azure-container-instances/
+
+### AWS: BreakingFormation
+- Summary: Read access of host of AWS internal Cloudformation service via XXE SSRF. The level of access with the compromised IAM role from there is unclear.
+- Platform: AWS
+- Severity: Critical
+- Date: September 9, 2021
+- Discoverer: Tzah Pahima, Orca
+- Customer action: N/A
+- References: 
+  - https://orca.security/resources/blog/aws-cloudformation-vulnerability/
+  - https://aws.amazon.com/security/security-bulletins/AWS-2022-001/
+
 
 ### Azure: Log analytics role privesc
 - Summary: Privilege escalation of Log Analytics Contributor role to Subscription Contributor role.
@@ -369,6 +381,17 @@ Concern has been raised that AWS restricts what they allow to be pentested (thei
 - Customer action: Update client to 3.1.9 or higher
 - References: 
   - https://rhinosecuritylabs.com/aws/cve-2021-38112-aws-workspaces-rce/
+
+### AWS: SuperGlue
+- Summary: Compromise of internal AWS Glue service to assume the glue role in any AWS account that used glue.
+- Platform: AWS
+- Severity: Critical
+- Date: September 30, 2021
+- Discoverer: Yanir Tsarimi, Orca
+- Customer action: N/A
+- References: 
+  - https://orca.security/resources/blog/aws-glue-vulnerability/
+  - https://aws.amazon.com/security/security-bulletins/AWS-2022-002/
 
 ### Azure Active Directory information disclosure vulnerability (CVE-2021-42306)
 - Summary: Automation Account “Run as” credentials (PFX certificates) were being stored in cleartext, in Azure Active Directory (AAD). These credentials were available to anyone with the ability to read information about App Registrations (typically most AAD users). 
