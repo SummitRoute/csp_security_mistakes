@@ -55,7 +55,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - http://seclab.nu/static/publications/sac2012ec2.pdf
 
-
 ### AWS: Bypasses in IAM policies and over-privileged
 - Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
 - Platform: AWS
@@ -88,7 +87,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://rhinosecuritylabs.com/aws/cloud-security-csv-injection-aws-cloudtrail/
 
-
 ### AWS: Launching EC2s did not require specifying AMI owner: CVE-2018-15869
 - Summary: Attackers had put malicious AMIs in the marketplace
 - Platform: AWS
@@ -98,7 +96,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Customer action: Update CLI and other tools that create EC2s
 - References:
   - https://github.com/hashicorp/packer/issues/6584
-
 
 ### AWS: Resource policy confused deputy issue with services
 - Summary: Resource policies lacked a way of restricting service access to only your own account, allowing an attacker to leverage a service to potentially access your resources. Originally discovered by Dan Peebles and presented at re:Invent in 2018, this issue did not gain enough attention to be fixed until Shir Tamari and Ami Luttwak from Wiz presented it at Black Hat 2021.
@@ -339,7 +336,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://blog.champtar.fr/Metadata_MITM_root_EKS_GKE/
 
-
 ### AWS: Route table modification to imitate metadata service
 - Summary: An attacker with sufficient privileges in AWS to modify the route table and some other EC2 privileges, could pretend to be a metadata server and provide an attacker controlled bootup script to EC2s to move laterally.
 - Platform: AWS
@@ -434,7 +430,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://orca.security/resources/blog/aws-cloudformation-vulnerability/
   - https://aws.amazon.com/security/security-bulletins/AWS-2022-001/
-
 
 ### Azure: Log analytics role privesc
 - Summary: Privilege escalation of Log Analytics Contributor role to Subscription Contributor role.
