@@ -123,7 +123,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Platform: AWS
 - Severity: Low
 - Date: May 13, 2019
-- Discoverer: Ryan Gerstenkorn (https://twitter.com/Ryan_Jarv/
+- Discoverer: Ryan Gerstenkorn (https://twitter.com/Ryan_Jarv/)
 - Customer action: Audit your VPC hosted zones
 - References:
   - https://twitter.com/__steele/status/1273748905826455552
