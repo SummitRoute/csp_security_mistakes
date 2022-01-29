@@ -266,7 +266,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://frichetten.com/blog/aws-api-enum-vuln/
   - https://github.com/Frichetten/aws_stealth_perm_enum
 
-### AWS:
+### AWS: Timing attack against CloudWatch Synthetics
 - Summary: Ability to violate the immutability of Lambda versions via a timing attack against CloudWatch Synthetics.
 - Platform: AWS
 - Severity: Low
