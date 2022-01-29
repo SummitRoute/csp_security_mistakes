@@ -40,7 +40,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Platform: AWS
 - Severity: Medium
 - Date: until December 18th, 2008
-- Discoverer: TKTK
+- Discoverer: Colin Percival
 - Customer action: N/A, SigV1 is deprecated at this point
 - References:
   - http://www.daemonology.net/blog/2008-12-18-AWS-signature-version-1-is-insecure.html
@@ -50,7 +50,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Platform: AWS
 - Severity: Low
 - Date: June, 2011
-- Discoverer: TKTK
+- Discoverer: Marco Balduzzi, Jonas Zaddach, Davide Balzarotti, Engin Kirda, Sergio Loureiro
 - Customer action: Follow [best practices](https://aws.amazon.com/articles/how-to-share-and-use-public-amis-in-a-secure-manner/) when sharing Public AMIs
 - References:
   - http://seclab.nu/static/publications/sac2012ec2.pdf
