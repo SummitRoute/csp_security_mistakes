@@ -317,6 +317,16 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://onecloudplease.com/blog/security-september-still-early-days-for-abac
 
+### GCP: Exfiltrate data via the logs of GCP Org policy
+- Summary: Upon blocking a request, GCP Org policy constraints were logging the deny logs in Principal's project and the blocking project. An attacker could use those logs to exfiltrate any data, by making request from a Principal they own from a defender project.
+- Platform: GCP
+- Severity: Low
+- Date: October 12, 2020
+- Discoverer: Jonathan Rault, TrustOnCloud
+- Customer action: Review denied logs in the defender project, because it was also logged there.
+- References: 
+  - https://trustoncloud.com/exfiltrate-data-from-your-super-secure-google-cloud-project-using-the-security-control-built-to-prevent-it/
+
 ### AWS: Lack of internal change controls for IAM managed policies
 - Summary: Repeated examples of AWS releasing or changing IAM policies they obviously shouldn't have (CheesepuffsServiceRolePolicy, AWSServiceRoleForThorInternalDevPolicy, AWSCodeArtifactReadOnlyAccess.json, AmazonCirrusGammaRoleForInstaller). The worst being the ReadOnlyAccess policy having almost all privileges removed and unexpected ones added.
 - Platform: AWS
