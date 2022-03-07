@@ -557,7 +557,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 
 - Summary: An exposed endpoint in the Azure Automation Service allowed to steal Azure API credentials from other customers
 - Platform: Azure
-- Severity: High
+- Severity: Critical
 - Discoverer: Yanir Tsarimi, Orca
 - Customer action: N/A. As a general practice, use the least-privilege principle, including on managed identities assigned to automation accounts. While this would not have prevented the leakage of API credentials, it would have reduced the blast radius.
 - References:
