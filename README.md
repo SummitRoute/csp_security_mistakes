@@ -1,7 +1,7 @@
 # Cloud Service Provider security mistakes
 This page lists security mistakes by cloud service providers (AWS, GCP, and Azure). These are public mistakes on the cloud providers' side of the shared responsibility model. This may be CVEs or bug bounties for issues in the services they run, but could also be in client software they provide, guidance they have given, failed audit tests in their SOC 2 Type 2, security incidents they have had, and more.  
 
-Whether an issue is included or not is hard to define and thus opinionated.  For my definition of a mistake, I am generally not including business decisions such as AWS releasing a service before it has Cloudtrail auditing support, or some technical decisions by the cloud providers such as the ease with which an S3 bucket can be made public.  Some technical decisions are concerning enough to be listed here though. I'm avoiding GSuite and Office365 issues, or issues that are not specifically cloud issues (ex. Active Directory issues unless it specifically impacts Azure AD). I am not including security incidents at the companies that did not seem to impact the cloud services for customers (ex. when Amazon's Twitch was hacked, it didn't impact AWS customers), or security incidents of their customers (ex. Capital One's breach on AWS).
+Whether an issue is included or not is hard to define and thus opinionated.  For my definition of a mistake, I am generally not including business decisions such as AWS releasing a service before it has Cloudtrail auditing support, or some technical decisions by the cloud providers such as the ease with which an S3 bucket can be made public.  Some technical decisions are concerning enough to be listed here though. I'm avoiding GSuite and Office365 issues, or issues that are not specifically cloud issues (ex. Active Directory issues unless it specifically impacts Azure AD). I am not including security incidents at the companies that did not seem to impact the cloud services for customers (ex. when Amazon's Twitch was hacked, it didn't impact AWS customers), or security incidents of their customers (ex. Capital One's breach on AWS). I'm not including WAF bypasses as WAFs are inherently bypassable.
 
 The purpose of this project is to ensure there is a record of these mistakes. Although I believe using cloud providers is often a much better decision than self-hosting, it's important to hold them accountable by recognizing their security mistakes.
 
@@ -9,6 +9,10 @@ Where possible I also want to ensure customers know what steps they can take to 
  https://www.wiz.io/blog/security-industry-call-to-action-we-need-a-cloud-vulnerability-database).
 
 Concern has been raised that AWS restricts what they allow to be pentested (their [guidance](https://aws.amazon.com/security/penetration-testing/) and [historic guidance](http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/)) and has no [bug bounty](https://twitter.com/SpenGietz/status/1252971138352701442) which are believed by some to limit the issues that become public with AWS.
+
+## Similar work
+- Alon Schindel and Shir Tamari from Wiz.io have been advocating for the desire for a cloud vulnerability database through their [blog post](https://www.wiz.io/blog/security-industry-call-to-action-we-need-a-cloud-vulnerability-database/), Slack forum (linked from their blog post), and [Black Hat talk](https://www.youtube.com/watch?v=JEA_Zgi8Tjg&list=PLH15HpR5qRsW62N-GLRb1q56Zr7sm10rF&index=9).
+- Christophe Parisel has described a concept called [Piercing Index](https://www.linkedin.com/posts/parisel_cloud-providers-flaw-assessment-ugcPost-6896378757695856640-NBoY/) for classifying the impact of cloud provider vulnerabilities.
 
 ## Field explanations
 
