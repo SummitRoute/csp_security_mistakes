@@ -70,6 +70,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://duo.com/blog/potential-gaps-in-suggested-amazon-web-services-security-policies-for-mfa
   - https://summitroute.com/blog/2019/06/18/aws_iam_managed_policy_review/
   - https://medium.com/ymedialabs-innovation/an-aws-managed-policy-that-allowed-granting-root-admin-access-to-any-role-51b409ea7ff0
+  - https://www.tenchisecurity.com/blog/thefaultinourstars
 
 ### Azure: CSV Injection in Activity Log
 - Summary: An Azure user can attempt (but fail) to create an Azure “Resource Group” with a malicious name.  In setting this name as a Microsoft Excel formula, the system would reject the syntax (due to certain blacklisted characters) but still log the original string in the Azure “Activity Log”.  When a victim user downloaded the – now infected – CSV logs and opened them in Excel, the attacker’s remote code was executed, compromising the user (and likely their Azure account as well).  The single set of Activity Logs also means a lower-privileged user could use this attack to target administrative users.
