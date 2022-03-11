@@ -63,8 +63,8 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
 - Platform: AWS
 - Severity: Medium
-- Date: November 17, 2017 (date and discoverer is of the first issue, references provide other examples by other individuals)
-- Discoverer: Scott Piper, Duo Labs + Summit Route
+- Date: November 17, 2017 (date is of the first issue, references provide other examples by various individuals)
+- Discoverer: Multiple findings
 - Customer action: Review the policies provided by AWS
 - References:
   - https://duo.com/blog/potential-gaps-in-suggested-amazon-web-services-security-policies-for-mfa
