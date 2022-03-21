@@ -271,7 +271,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://frichetten.com/blog/aws-api-enum-vuln/
   - https://github.com/Frichetten/aws_stealth_perm_enum
 
-### AWS:
+### AWS: Timing attack with Lambda and CloudWatch Synthetics
 - Summary: Ability to violate the immutability of Lambda versions via a timing attack against CloudWatch Synthetics.
 - Platform: AWS
 - Severity: Low
@@ -546,7 +546,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Discoverer: Shir Tamari, Wiz.io
 - Customer action: Remove these permissions, it can be done via an organization policy
 - References:
-  - https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_default_grants
+  - https://www.wiz.io/blog/azure-app-service-source-code-leak/
 
 ### AWS: Overprivileged AWS Support IAM Role Policy
 - Summary: AWS added `s3:getObject` action to `AWSSupportServiceRolePolicy` IAM Policy used by AWS Support teams.
@@ -559,7 +559,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
 
 ### Azure: AutoWarp
-
 - Summary: An exposed endpoint in the Azure Automation Service allowed to steal Azure API credentials from other customers
 - Platform: Azure
 - Severity: Critical
