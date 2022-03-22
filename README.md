@@ -5,8 +5,7 @@ Whether an issue is included or not is hard to define and thus opinionated.  For
 
 The purpose of this project is to ensure there is a record of these mistakes. Although I believe using cloud providers is often a much better decision than self-hosting, it's important to hold them accountable by recognizing their security mistakes.
 
-Where possible I also want to ensure customers know what steps they can take to detect or prevent the issues identified.  Mitre, which is the organization that manages CVEs, has generally avoided providing CVEs for security issues of the cloud providers under the assumption that all issues can be resolved by the cloud provider and therefore do not need a tracking number. This view is sometimes incorrect, and even when the issue can be resolved by the cloud provider, I still believe it warrants having a record.  Similar views are expanded on by Alon Schindel and Shir Tamari from Wiz.io in their post [Security industry call to action: we need a cloud vulnerability database](
- https://www.wiz.io/blog/security-industry-call-to-action-we-need-a-cloud-vulnerability-database).
+Where possible I also want to ensure customers know what steps they can take to detect or prevent the issues identified.  Mitre, which is the organization that manages CVEs, has generally avoided providing CVEs for security issues of the cloud providers under the assumption that all issues can be resolved by the cloud provider and therefore do not need a tracking number. This view is sometimes incorrect, and even when the issue can be resolved by the cloud provider, I still believe it warrants having a record.
 
 Concern has been raised that AWS restricts what they allow to be pentested (their [guidance](https://aws.amazon.com/security/penetration-testing/) and [historic guidance](http://web.archive.org/web/20151212173314/https://aws.amazon.com/security/penetration-testing/)) and has no [bug bounty](https://twitter.com/SpenGietz/status/1252971138352701442) which are believed by some to limit the issues that become public with AWS.
 
@@ -50,7 +49,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - http://www.daemonology.net/blog/2008-12-18-AWS-signature-version-1-is-insecure.html
 
 ### AWS: AWS published official AMIs with recoverable deleted files
-- Summary: Researchers, while investigating the security posture of Public AMIs, were able to undeleted 8,996 files from an official image that was published by Amazon AWS.
+- Summary: Researchers, while investigating the security posture of Public AMIs, were able to undelete files from an official image that was published by Amazon AWS.
 - Platform: AWS
 - Severity: Low
 - Date: June, 2011
@@ -58,6 +57,17 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Customer action: Follow [best practices](https://aws.amazon.com/articles/how-to-share-and-use-public-amis-in-a-secure-manner/) when sharing Public AMIs
 - References:
   - http://seclab.nu/static/publications/sac2012ec2.pdf
+
+### AWS: AssumeRole vendor issues with confused deputy
+- Summary: Vendors may allow customers to access the data of other customers. Although this is a misconfiguration with the vendors, AWS could have better helped prevent and detect this issue.
+- Platform: AWS
+- Severity: Medium
+- Date: November 16, 2016
+- Discoverer: Daniel Grzelak, Atlassian
+- Customer action: Audit your vendor roles
+- References:
+  - https://www.youtube.com/watch?v=8ZXRw4Ry3mQ
+  - https://www.praetorian.com/blog/aws-iam-assume-role-vulnerabilities/
 
 ### AWS: Bypasses in IAM policies and over-privileged
 - Summary: Repeated examples of AWS provided managed policies or guidance in documentation for policies with mistakes that allow the policies to by bypassed. Generically, there are also over-privileged policies and policies with spelling mistakes and other issues.
@@ -72,28 +82,8 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://medium.com/ymedialabs-innovation/an-aws-managed-policy-that-allowed-granting-root-admin-access-to-any-role-51b409ea7ff0
   - https://www.tenchisecurity.com/blog/thefaultinourstars
 
-### Azure: CSV Injection in Activity Log
-- Summary: An Azure user can attempt (but fail) to create an Azure “Resource Group” with a malicious name.  In setting this name as a Microsoft Excel formula, the system would reject the syntax (due to certain blacklisted characters) but still log the original string in the Azure “Activity Log”.  When a victim user downloaded the – now infected – CSV logs and opened them in Excel, the attacker’s remote code was executed, compromising the user (and likely their Azure account as well).  The single set of Activity Logs also means a lower-privileged user could use this attack to target administrative users.
-- Platform: Azure
-- Severity: Low
-- Date: December 21, 2017 (discovered, still present)
-- Discoverer: Spencer Gietzen, Rhino Security Labs
-- Customer action: CSV logs had a `.txt` appended, which should not be removed
-- References:
-  - https://rhinosecuritylabs.com/aws/cloud-security-csv-injection-aws-cloudtrail/
-
-### AWS: CSV Injection in Cloudtrail
-- Summary: Users with ‘CreateTrail’ permissions within an AWS CloudTrail account can attempt to create a trail with a malicious Excel formula as the name. Although the attempt will fail, the event will be logged to AWS CloudTrail’s event history. This entry will include the “Resource name” column referring to the rejected name. This allows for an Excel formula to be injected into the CloudTrail logs. When another user exports that data as a .csv file and imports it into Excel, it allows an attacker to execute malicious code on user’s computer.
-- Platform: AWS
-- Severity: Low
-- Date: December 13, 2017 (discovered, still present)
-- Discoverer: Spencer Gietzen, Rhino Security Labs
-- Customer action: [Always disable links or macros from downloaded event history files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#downloading-events)
-- References:
-  - https://rhinosecuritylabs.com/aws/cloud-security-csv-injection-aws-cloudtrail/
-
 ### AWS: Launching EC2s did not require specifying AMI owner: CVE-2018-15869
-- Summary: Attackers had put malicious AMIs in the marketplace
+- Summary: Attackers had put malicious AMIs in the marketplace to abuse the CLI's way of selecting what AMI to use. Although the concept of planting  malicious AMIs had existed for a while (ex. in the 2009 presentation "Clobbering the clouds" by Nicholas Arvanitis, Marco Slaviero, and Haroon Meer) it had not been used specifically to target this issue with the CLI.
 - Platform: AWS
 - Severity: Medium
 - Date: August 13, 2018
@@ -124,7 +114,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://twitter.com/_fel1x/status/1083085715565621250
 
 ### AWS: VPC Hosted Zones unauditable
-- Summary: For 6 years, it was not possible to see what hosted zones an attacker may have created in an account.
+- Summary: For 6 years, it was not possible to see what hosted zones an attacker may have created in an account. This issue could be viewed as a business decision that adding the ability to viewing this data was not worthwhile, but the delay is significant and would allow someone that had compromised an environment to maintain a backdoor. 
 - Platform: AWS
 - Severity: Low
 - Date: May 13, 2019
@@ -134,15 +124,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://twitter.com/__steele/status/1273748905826455552
   - https://blog.ryanjarv.sh/2019/05/24/backdooring-route53-with-cross-account-dns.html
 
-### AWS: S3 Bucket Namesquatting
-- Summary: In 52 different cases, it was possible to predict bucket names used by AWS services for unreleased regions, and register those buckets in the global namespace.
-- Platform: AWS
-- Severity: High
-- Date: July 31, 2019
-- Discoverer: Ian McKay (https://twitter.com/iann0036)
-- Customer action: If you use bucket names with region substitution in cloudformation templates, you should use a region mapping or a process which allows a single bucket to be used in your solution
-- References:
-  - https://onecloudplease.com/blog/s3-bucket-namesquatting
 
 ### AWS: ALB HTTP request smuggling
 - Summary: ALBs found vulnerable to HTTP request smuggling (desync attack).
@@ -186,18 +167,8 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://github.com/RhinoSecurityLabs/Cloud-Security-Research/tree/master/AWS/cloudtrail_guardduty_bypass
 
-### AWS: AssumeRole vendor issues with confused deputy
-- Summary: Kesten identifies that you may be able to access other AWS customers through their vendors
-- Platform: AWS
-- Severity: Medium
-- Date: June 12, 2020
-- Discoverer: Kesten Broughton, Praetorian
-- Customer action: Audit your vendor roles
-- References:
-  - https://www.praetorian.com/blog/aws-iam-assume-role-vulnerabilities/
-
-### Azure: GKE `CAP_NET_RAW` metadata service MITM root privilege escalation
-- Summary: An attacker gaining access to a hostNetwork=true container with CAP_NET_RAW capability can listen to all the traffic going through the host and inject arbitrary traffic, allowing to tamper with most unencrypted traffic (HTTP, DNS, DHCP, …), and disrupt encrypted traffic. In GKE the host queries the metadata service at `http://169.254.169.254` to get information, including the authorized ssh keys. By manipulating the metadata service responses, injecting our own ssh key, it is possible to gain root privilege on the host.
+### GCP and AWS: GKE `CAP_NET_RAW` metadata service MITM root privilege escalation
+- Summary: An attacker gaining access to a hostNetwork=true container with CAP_NET_RAW capability can listen to all the traffic going through the host and inject arbitrary traffic, allowing to tamper with most unencrypted traffic (HTTP, DNS, DHCP, ...), and disrupt encrypted traffic. In GKE the host queries the metadata service at `http://169.254.169.254` to get information, including the authorized ssh keys. By manipulating the metadata service responses, injecting our own ssh key, it is possible to gain root privilege on the host.
 - Platform: Azure
 - Severity: Medium
 - Date: June 15, 2020
@@ -340,16 +311,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Customer action: N/A
 - References:
   - https://twitter.com/__steele/status/1316909785607012352
-
-### AWS: EKS `CAP_NET_RAW` metadata service MITM root privilege escalation
-- Summary: On AWS EKS, an attacker able to get arbitrary code execution as root in a hostNetwork pod can use the CAP_NET_RAW capability to monitor and inject packets on the instance.
-- Platform: AWS
-- Severity: Medium
-- Date: October 19, 2020
-- Discoverer: Etienne Champetier
-- Customer action: N/A
-- References:
-  - https://blog.champtar.fr/Metadata_MITM_root_EKS_GKE/
 
 ### AWS: Route table modification to imitate metadata service
 - Summary: An attacker with sufficient privileges in AWS to modify the route table and some other EC2 privileges, could pretend to be a metadata server and provide an attacker controlled bootup script to EC2s to move laterally.
