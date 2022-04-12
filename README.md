@@ -499,6 +499,17 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://blog.lightspin.io/aws-sagemaker-notebook-takeover-vulnerability
 
+### AWS RDS local file read
+- Summary: Able to read local files on the host of the RDS, found AWS creds. 
+- Platform: AWS
+- Severity: High
+- Date: December 9, 2021
+- Discoverer:  Gafnit Amiga, Lightspin
+- Customer action: N/A
+- References:
+  - https://blog.lightspin.io/aws-rds-critical-security-vulnerability
+  - https://aws.amazon.com/security/security-bulletins/AWS-2022-004/
+
 ### Azure NotLegit: App Service vulnerability exposed source code repositories
 - Summary:
 - Platform: Azure
