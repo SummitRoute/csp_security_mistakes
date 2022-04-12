@@ -499,6 +499,16 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://blog.lightspin.io/aws-sagemaker-notebook-takeover-vulnerability
 
+### Azure: AutoWarp
+- Summary: An exposed endpoint in the Azure Automation Service allowed to steal Azure API credentials from other customers
+- Platform: Azure
+- Severity: Critical
+- Date: December 6, 2021
+- Discoverer: Yanir Tsarimi, Orca
+- Customer action: N/A. As a general practice, use the least-privilege principle, including on managed identities assigned to automation accounts. While this would not have prevented the leakage of API credentials, it would have reduced the blast radius.
+- References:
+  - https://orca.security/resources/blog/autowarp-microsoft-azure-automation-service-vulnerability/
+
 ### AWS RDS local file read
 - Summary: Able to read local files on the host of the RDS, found AWS creds. 
 - Platform: AWS
@@ -530,11 +540,12 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
 
-### Azure: AutoWarp
-- Summary: An exposed endpoint in the Azure Automation Service allowed to steal Azure API credentials from other customers
-- Platform: Azure
-- Severity: Critical
-- Discoverer: Yanir Tsarimi, Orca
-- Customer action: N/A. As a general practice, use the least-privilege principle, including on managed identities assigned to automation accounts. While this would not have prevented the leakage of API credentials, it would have reduced the blast radius.
+
+### AWS: CVE-2022-25165: Privilege Escalation to SYSTEM in AWS VPN Client
+- Summary: Windows privesc in the AWS VPN client
+- Platform: AWS
+- Severity: Low
+- Date: February 15, 2022
+- Discoverer: David Yesland, Rhino Security
 - References:
-  - https://orca.security/resources/blog/autowarp-microsoft-azure-automation-service-vulnerability/
+  - https://rhinosecuritylabs.com/aws/cve-2022-25165-aws-vpn-client/
