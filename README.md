@@ -549,3 +549,4 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Discoverer: David Yesland, Rhino Security
 - References:
   - https://rhinosecuritylabs.com/aws/cve-2022-25165-aws-vpn-client/
+  - https://aws.amazon.com/security/security-bulletins/AWS-2022-005/
