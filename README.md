@@ -520,6 +520,17 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://blog.lightspin.io/aws-rds-critical-security-vulnerability
   - https://aws.amazon.com/security/security-bulletins/AWS-2022-004/
 
+### AWS: Log4Shell Hot Patch Vulnerable to Container Escape and Privilege Escalation
+- Summary: AWS's hotpatch for Log4shell patched the RCE but enabled a container escape.
+- Platform: AWS
+- Severity: High
+- Date: December 14, 2021
+- Discoverer: Yuval Avrahami, Palo Alto
+- References:
+  - https://unit42.paloaltonetworks.com/aws-log4shell-hot-patch-vulnerabilities/
+  - https://aws.amazon.com/security/security-bulletins/AWS-2022-006/
+
+
 ### Azure NotLegit: App Service vulnerability exposed source code repositories
 - Summary:
 - Platform: Azure
@@ -550,3 +561,5 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://rhinosecuritylabs.com/aws/cve-2022-25165-aws-vpn-client/
   - https://aws.amazon.com/security/security-bulletins/AWS-2022-005/
+
+
