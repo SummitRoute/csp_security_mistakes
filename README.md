@@ -470,6 +470,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
   - https://github.com/microsoft/aad-app-credential-tools/blob/main/azure-migrate/azure-migrate-credential-rotation-guide.md
   - https://www.netspi.com/blog/technical/cloud-penetration-testing/azure-cloud-vulnerability-credmanifest/
 
+
 ### AWS API Gateway HTTP header smuggling
 - Summary: A flaw in AWS API Gateway enabled hiding HTTP request headers. Tampering with HTTP requests visibility enabled bypassing IP restrictions, cache poisoning and request smuggling.
 - Platform: AWS
@@ -550,6 +551,17 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Customer action: Use KMS-CMK for bucket encryption, Use Least privilege on resources policies (Buckets)
 - References:
   - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
+
+### Azure ExtraReplica: Cross-account database vulnerability in Azure PostgreSQL
+- Summary: Read access to other customer's Azure Database for PostgreSQL Flexible Server
+- Platform: Azure
+- Severity: Critical
+- Date: January 11, 2022
+- Discoverer:  Sagi Tzadik, Nir Ohfeld, Shir Tamari, and Ronen Shustin from Wiz.o
+- Customer action: N/A
+- References:
+  - https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql/
+  - https://msrc-blog.microsoft.com/2022/04/28/azure-database-for-postgresql-flexible-server-privilege-escalation-and-remote-code-execution
 
 
 ### AWS: CVE-2022-25165: Privilege Escalation to SYSTEM in AWS VPN Client
