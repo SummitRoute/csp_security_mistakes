@@ -557,7 +557,7 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - Platform: Azure
 - Severity: Critical
 - Date: January 11, 2022
-- Discoverer:  Sagi Tzadik, Nir Ohfeld, Shir Tamari, and Ronen Shustin from Wiz.o
+- Discoverer:  Sagi Tzadik, Nir Ohfeld, Shir Tamari, and Ronen Shustin from Wiz.io
 - Customer action: N/A
 - References:
   - https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql/
