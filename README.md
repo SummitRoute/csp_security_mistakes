@@ -552,6 +552,16 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://aws.amazon.com/security/security-bulletins/AWS-2021-007/
 
+### Azure: Synlapse: CVE-2022-29972
+- Summary: Azure Synapse Analytics and Azure Data Factory, cross-tenant access
+- Platform: Azure
+- Severity: Critical
+- Date: January 4, 2022
+- Discoverer: Tzah Pahima, Orca Security
+- References:
+  - https://orca.security/resources/blog/azure-synapse-analytics-security-advisory/
+  - https://msrc-blog.microsoft.com/2022/05/09/vulnerability-mitigated-in-the-third-party-data-connector-used-in-azure-synapse-pipelines-and-azure-data-factory-cve-2022-29972/
+
 ### Azure ExtraReplica: Cross-account database vulnerability in Azure PostgreSQL
 - Summary: Read access to other customer's Azure Database for PostgreSQL Flexible Server
 - Platform: Azure
@@ -562,16 +572,6 @@ AWS access key. The initial signing algorithm, SigV1, was vulnerable to collisio
 - References:
   - https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql/
   - https://msrc-blog.microsoft.com/2022/04/28/azure-database-for-postgresql-flexible-server-privilege-escalation-and-remote-code-execution
-
-### Azure: Synlapse: CVE-2022-29972
-- Summary: Azure Synapse Analytics and Azure Data Factory, cross-tenant access
-- Platform: Azure
-- Severity: Critical
-- Date: January 4, 2022
-- Discoverer: Tzah Pahima, Orca Security
-- References:
-  - https://orca.security/resources/blog/azure-synapse-analytics-security-advisory/
-  - https://msrc-blog.microsoft.com/2022/05/09/vulnerability-mitigated-in-the-third-party-data-connector-used-in-azure-synapse-pipelines-and-azure-data-factory-cve-2022-29972/
 
 ### AWS: CVE-2022-25165: Privilege Escalation to SYSTEM in AWS VPN Client
 - Summary: Windows privesc in the AWS VPN client
