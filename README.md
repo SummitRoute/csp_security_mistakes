@@ -1,3 +1,7 @@
+# This repo has been replaced by https://www.cloudvulndb.org/
+Please report new security mistakes to https://www.cloudvulndb.org/
+
+------------------------------
 # Cloud Service Provider security mistakes
 This page lists security mistakes by cloud service providers (AWS, GCP, and Azure). These are public mistakes on the cloud providers' side of the shared responsibility model. This may be CVEs or bug bounties for issues in the services they run, but could also be in client software they provide, guidance they have given, failed audit tests in their SOC 2 Type 2, security incidents they have had, and more.  
 
